@@ -13,6 +13,9 @@
     <name>com-photo-model</name>
     <description>com-photo-model</description>
     <packaging>jar</packaging>
+    <dependencies>
+
+    </dependencies>
     <build>
         <plugins>
             <plugin>

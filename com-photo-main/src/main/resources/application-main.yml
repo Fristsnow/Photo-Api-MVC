@@ -1,2 +1,43 @@
-server:
-  port: 9001
+#server:
+#  port: 9001
+spring:
+  datasource:
+    #    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/01_laravel_api_a?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: WANGXINYU1119
+#    name: 01_laravel_api_a
+  servlet:
+    multipart:
+      # 配置单个文件上传大小的限制
+      max-file-size: 10MB
+      # 配置单个请求最大大小的限制(一次请求中可以上传多个文件)
+      max-request-size: 100MB
+  #数据库配置  start
+  jackson:
+    default-property-inclusion: non_null
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  messages:
+    basename: i18n/messages
+    cache-second: 3600
+    encoding: UTF-8
+  #日志级别
+logging:
+  level:
+    com.photo: debug
+#mybatis:
+#  # 配置xml的mapper的映射
+#  #  mapper-locations: classpath:/mapper/*Mapper.xml
+#  # 搜索指定包别名
+##  typeAliasesPackage: com.photo.model.
+#  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+#  mapperLocations: classpath:mybatis/mapper/*Mapper.xml
+#  # 加载全局的配置文件
+#  configLocation: classpath:mybatis/mybatis-config.xml
+#  configuration:
+#    # mybatis输出到控制台
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    # 驼峰命名的开关 td_user  --> tdUser
+#    map-underscore-to-camel-case: true
