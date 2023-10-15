@@ -21,6 +21,8 @@
 
     <properties>
         <java.version>8</java.version>
+        <hutool.version>5.2.5</hutool.version>
+        <mybatis-spring-boot.version>2.2.2</mybatis-spring-boot.version>
     </properties>
 
     <modules>
@@ -28,23 +30,8 @@
         <module>com-photo-mapper</module>
         <module>com-photo-model</module>
         <module>com-photo-service</module>
+        <module>com-photo-common</module>
     </modules>
-<!--    <dependencyManagement>-->
-<!--        <dependencies>-->
-<!--            &lt;!&ndash;JDBC&ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-starter-jdbc</artifactId>-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash;        mysql&ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>com.mysql</groupId>-->
-<!--                <artifactId>mysql-connector-j</artifactId>-->
-<!--                <scope>runtime</scope>-->
-<!--                <version>8.0.31</version>-->
-<!--            </dependency>-->
-<!--        </dependencies>-->
-<!--    </dependencyManagement>-->
 
     <dependencies>
         <dependency>
@@ -82,7 +69,19 @@
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.2.2</version>
+            <version>${mybatis-spring-boot.version}</version>
+        </dependency>
+        <!--        糊涂啊-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+        <!-- Hash crypt-->
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
         </dependency>
     </dependencies>
 

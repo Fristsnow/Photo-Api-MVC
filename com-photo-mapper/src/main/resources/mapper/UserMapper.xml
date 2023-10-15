@@ -28,7 +28,20 @@
                updated_at
         from users
     </sql>
+    <insert id="createAdmin">
+        insert into users(email, password, full_name, is_admin, create_time, created_at, updated_at)
+        values (#{email}, #{password}, #{fullName}, #{isAdmin}, #{createTime}, #{createdAt}, #{updatedAt})
+    </insert>
     <select id="list" resultType="com.photo.model.User">
         <include refid="userList"/>
     </select>
+    <select id="login" resultType="com.photo.model.User">
+        <include refid="userList"/>
+        where email = #{email}
+    </select>
+    <!--    <select id="getUser" parameterType="string" resultType="com.photo.model.User">-->
+<!--        &lt;!&ndash;        <include refid="userList"/>&ndash;&gt;-->
+<!--        select * from users-->
+<!--        where email = #{email}-->
+<!--    </select>-->
 </mapper>

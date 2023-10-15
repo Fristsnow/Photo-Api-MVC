@@ -1,14 +1,16 @@
 package com.photo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(value = {"createdTime,updatedTime"})
 public class User {
 
     private Integer id;
@@ -25,9 +27,14 @@ public class User {
 
     private Integer isAdmin;
 
-    private LocalDate createTime;
+    private LocalDateTime createTime;
 
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
-    private LocalDate updatedAt;
+    private LocalDateTime updatedAt;
+
+    private String repeatPassword;
+
+//    public void setIsAdmin(boolean b) {
+//    }
 }

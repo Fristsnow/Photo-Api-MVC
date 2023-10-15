@@ -1,4 +1,5 @@
+K:\.Firstsnow\.java-q\Photo-Api-MVC\com-photo-main\src\main\java\com\photo\main\controller\LoginController.java
 K:\.Firstsnow\.java-q\Photo-Api-MVC\com-photo-main\src\main\java\com\photo\main\ComPhotoApplication.java
-K:\.Firstsnow\.java-q\Photo-Api-MVC\com-photo-main\src\main\java\com\photo\main\controller\UserController.java
-K:\.Firstsnow\.java-q\Photo-Api-MVC\com-photo-main\src\main\java\com\photo\main\common\Result.java
+K:\.Firstsnow\.java-q\Photo-Api-MVC\com-photo-main\src\main\java\com\photo\main\controller\admin\UserAdminController.java
+K:\.Firstsnow\.java-q\Photo-Api-MVC\com-photo-main\src\main\java\com\photo\main\controller\client\UserClientController.java
 K:\.Firstsnow\.java-q\Photo-Api-MVC\com-photo-main\src\main\java\com\photo\main\controller\Controller.java

@@ -8,4 +8,10 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
     List<User> list();
+
+    User login(String email);
+
+    void createAdmin(User user);
+
+//    User getUser(String email);
 }

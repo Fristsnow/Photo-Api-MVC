@@ -1,4 +1,5 @@
-com\photo\main\common\Result.class
 com\photo\main\ComPhotoApplication.class
-com\photo\main\controller\UserController.class
+com\photo\main\controller\admin\UserAdminController.class
+com\photo\main\controller\LoginController.class
+com\photo\main\controller\client\UserClientController.class
 com\photo\main\controller\Controller.class
