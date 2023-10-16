@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.photo.mapper.FrameMapper">
+    <resultMap id="Frame" type="com.photo.model.Frame">
+        <result column="id" property="id"></result>
+        <result column="url" property="url"></result>
+        <result column="price" property="price"></result>
+        <result column="name" property="name"></result>
+        <result column="size" property="size"></result>
+        <result column="created_at" property="createdAt"></result>
+        <result column="updated_at" property="updatedAt"></result>
+    </resultMap>
+    <sql id="frameList">
+        select id, url, price, name, size, created_at, updated_at from frames
+    </sql>
+
+    <update id="updateFrame">
+        update frames
+        <set>
+            <if test="name != null">name = #{frameName},</if>
+            <if test="price != null">price = #{price}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="frameList" resultType="com.photo.model.Frame">
+        <include refid="frameList"/>
+    </select>
+    <select id="frameById" resultType="com.photo.model.Frame">
+        <include refid="frameList"/> where id = #{id}
+    </select>
+</mapper>

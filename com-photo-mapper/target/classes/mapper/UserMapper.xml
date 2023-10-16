@@ -35,6 +35,7 @@
     <select id="list" resultType="com.photo.model.User">
         <include refid="userList"/>
     </select>
+
     <select id="login" resultType="com.photo.model.User">
         <include refid="userList"/>
         where email = #{email}

@@ -1,1 +1,5 @@
+com\photo\mapper\PhotoMapper.class
 com\photo\mapper\UserMapper.class
+com\photo\mapper\FrameMapper.class
+com\photo\mapper\SizeMapper.class
+com\photo\mapper\OrderMapper.class

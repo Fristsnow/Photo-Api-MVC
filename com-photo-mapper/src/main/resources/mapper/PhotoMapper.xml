@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.photo.mapper.PhotoMapper">
+    <resultMap id="Photo" type="com.photo.model.Photo">
+        <result column="id" property="id"></result>
+        <result column="edited_url" property="editedUrl"></result>
+        <result column="original_url" property="originalUrl"></result>
+        <result column="framed_url" property="framedUrl"></result>
+        <result column="frame_name" property="frameName"></result>
+        <result column="size" property="size"></result>
+        <result column="print_price" property="printPrice"></result>
+        <result column="frame_price" property="framePrice"></result>
+        <result column="status" property="status"></result>
+        <result column="frame_id" property="frameId"></result>
+        <result column="user_id" property="userId"></result>
+        <result column="size_id" property="sizeId"></result>
+        <result column="order_id" property="orderId"></result>
+        <result column="created_at" property="createdAt"></result>
+        <result column="updated_at" property="updatedAt"></result>
+    </resultMap>
+
+    <sql id="photoList">
+        select id, edited_url, original_url, framed_url, frame_name, size, print_price, frame_price, status, frame_id, user_id, size_id, order_id, created_at, updated_at
+        from photos;
+    </sql>
+    <select id="photoList" resultType="com.photo.model.Photo">
+        <include refid="photoList"/>
+    </select>
+</mapper>

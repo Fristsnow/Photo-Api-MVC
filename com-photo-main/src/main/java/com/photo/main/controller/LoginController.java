@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 @Slf4j
-@RequestMapping("/admin")
+@RequestMapping
 public class LoginController {
 
     @Autowired
@@ -33,8 +34,8 @@ public class LoginController {
 //        return Result.success();
 //        return userService.login(loginVo);
 //    }
-    @PostMapping("/login")
-    public Result<String> login(HttpServletRequest request, @RequestBody User user) {
+    @PostMapping("/admin/login")
+    public Result<HashMap<String,Object>> login(HttpServletRequest request, @RequestBody User user) {
 //        String password = user.getPassword();
         String password = DigestUtils.md5DigestAsHex(user.getPassword().getBytes()); // 21232F297A57A5A743894A0E4A801FC3
 //        password = SecureUtil.md5(password); // 21232F297A57A5A743894A0E4A801FC3
@@ -47,15 +48,25 @@ public class LoginController {
         if (!user1.getPassword().equals(password)) {
             return Result.error(422, "密码不对");
         }
+        // DigestUtils.md5DigestAsHex("dfashdfbasjdhg".getBytes())
         request.getSession().setAttribute("user", DigestUtils.md5DigestAsHex(user1.getEmail().getBytes()));
 
         log.info("Cookie {},{}", request.getSession().getAttribute("user"), user1.getId());
 
         String cookie = (String) request.getSession().getAttribute("user");
-        return Result.cookie(cookie);
+
+        HashMap<String, Object> map = new HashMap<>();
+
+        map.put("id",user1.getId());
+        map.put("email",user1.getEmail());
+        map.put("full_name",user1.getFullName());
+        map.put("cookie",cookie);
+        map.put("create_time",user1.getCreateTime());
+
+        return Result.success(map);
     }
 
-    @PostMapping("/logout")
+    @PostMapping("/admin/logout")
     public Result<String> logout(HttpServletRequest request) {
         request.getSession().removeAttribute("user");
         return Result.success();

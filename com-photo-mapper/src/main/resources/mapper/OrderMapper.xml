@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.photo.mapper.OrderMapper">
+    <resultMap id="Order" type="com.photo.model.Order">
+        <result column="id" property="id"></result>
+        <result column="full_name" property="fullName"></result>
+        <result column="phone_number" property="fullName"></result>
+        <result column="shipping_address" property="shippingAddress"></result>
+        <result column="card_number" property="cardNumber"></result>
+        <result column="name_on_card" property="nameOnCard"></result>
+        <result column="exp_date" property="expDate"></result>
+        <result column="cvv" property="cvv"></result>
+        <result column="total" property="total"></result>
+        <result column="order_placed" property="orderPlace"></result>
+        <result column="status" property="status"></result>
+        <result column="user_id" property="userId"></result>
+        <result column="created_at" property="createdAt"></result>
+        <result column="updated_at" property="updatedAt"></result>
+    </resultMap>
+
+    <sql id="orderList">
+        select id, full_name, phone_number, shipping_address, card_number, name_on_card, exp_date, cvv, total, order_placed, status, user_id, created_at, updated_at
+        from orders;
+    </sql>
+
+    <select id="orderList" resultType="com.photo.model.Order">
+        <include refid="orderList"/>
+    </select>
+</mapper>

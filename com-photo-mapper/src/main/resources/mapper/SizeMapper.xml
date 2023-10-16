@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.photo.mapper.SizeMapper">
+    <resultMap id="Size" type="com.photo.model.Size">
+        <result column="id" property="id"></result>
+        <result column="size" property="size"></result>
+        <result column="width" property="width"></result>
+        <result column="height" property="height"></result>
+        <result column="price" property="price"></result>
+        <result column="created_at" property="createdAt"></result>
+        <result column="updated_at" property="updatedAt"></result>
+    </resultMap>
+    <sql id="sizeList">
+        select id, size, width, height, price from sizes
+    </sql>
+    <update id="updateSize">
+        update sizes set price = #{price} where id = #{id}
+    </update>
+
+    <select id="list" resultType="com.photo.model.Size">
+        <include refid="sizeList"/>
+    </select>
+    <select id="sizeById" resultType="com.photo.model.Size">
+        <include refid="sizeList"/> where id = #{id}
+    </select>
+
+
+</mapper>

@@ -23,8 +23,15 @@ public class LoginCheckFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
+
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "*");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
 
         String requestURI = request.getRequestURI();
         log.info("拦截的请求：{}", request.getRequestURI());
@@ -48,16 +55,14 @@ public class LoginCheckFilter implements Filter {
             return;
         }
         log.info("用户未登录");
-        response.getWriter().write(JSON.toJSONString(Result.error(404, "NotFound")));
+        response.getWriter().write(JSON.toJSONString(Result.error(401, "unauthenticated")));
 //        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     public boolean check(String[] urls, String requestURI) {
         for (String url : urls) {
             boolean match = PATH_MATCHER.match(url, requestURI);
-            if (match) {
-                return true;
-            }
+            if (match) return true;
         }
         return false;
     }

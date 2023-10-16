@@ -18,11 +18,14 @@ public class Result<T> implements Serializable {
 
 
     public static <T> Result<T> returnData(int code, String msg, T data, String cookies) {
-        Result result = new Result();
+
+        Result<T> result = new Result<>();
+
         result.setCode(code);
         result.setMsg(msg);
         result.setData(data);
         result.setCookies(cookies);
+
         return result;
     }
 

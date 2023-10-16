@@ -1,5 +1,12 @@
 com\photo\main\ComPhotoApplication.class
+com\photo\main\controller\client\SizeClientController.class
+com\photo\main\controller\client\FrameClientController.class
+com\photo\main\controller\admin\AdminAdminController.class
+com\photo\main\controller\client\ClientUserController.class
 com\photo\main\controller\admin\UserAdminController.class
+com\photo\main\controller\client\PhotoClientController.class
+com\photo\main\controller\admin\OrderAdminController.class
 com\photo\main\controller\LoginController.class
-com\photo\main\controller\client\UserClientController.class
 com\photo\main\controller\Controller.class
+com\photo\main\controller\admin\FrameAdminController.class
+com\photo\main\controller\admin\SizeAdminController.class
