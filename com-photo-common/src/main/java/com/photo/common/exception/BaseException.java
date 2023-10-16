@@ -1,5 +1,6 @@
-package com.photo.common;
+package com.photo.common.exception;
 
+import com.photo.common.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

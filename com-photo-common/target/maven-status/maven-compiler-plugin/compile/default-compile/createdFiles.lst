@@ -1,3 +1,5 @@
-com\photo\common\BaseException.class
 com\photo\common\filter\LoginCheckFilter.class
+com\photo\common\interceptor\LoginInterceptor.class
+com\photo\common\config\WebConfig.class
+com\photo\common\exception\BaseException.class
 com\photo\common\Result.class

@@ -51,7 +51,7 @@
 <!--    登录-->
     <select id="login" resultType="com.photo.model.User">
         <include refid="userList"/>
-        where email = #{email} and is_admin = 1
+        where email = #{email}
     </select>
 
 <!--    查Client用户-->
