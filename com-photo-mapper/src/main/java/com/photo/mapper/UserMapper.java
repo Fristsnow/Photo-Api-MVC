@@ -13,5 +13,25 @@ public interface UserMapper {
 
     void createAdmin(User user);
 
+    List<User> listClient();
+
+    /**
+     * 通过id查找
+     * @param id
+     * @return
+     */
+    User userById(Integer id);
+
+    /**
+     * 改密码
+     * @param id
+     * @param password
+     * @return
+     */
+    void resetPassword(Integer id, String password);
+
+    void deleteById(Integer id);
+
+
 //    User getUser(String email);
 }

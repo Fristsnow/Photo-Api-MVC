@@ -38,7 +38,8 @@ public class LoginCheckFilter implements Filter {
 
         String[] url = new String[]{
                 "/api/v1/admin/login",
-                "/api/v1/client/login"
+                "/api/v1/client/login",
+                "/api/v1/client/register"
         };
 
         boolean check = check(url, requestURI);

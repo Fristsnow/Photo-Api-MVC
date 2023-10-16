@@ -39,6 +39,10 @@ public class UserServiceImpl implements UserService {
         return userMapper.login(email);
     }
 
+    /**
+     * 创建Admin
+     * @param user
+     */
     @Override
     public void createAdmin(User user) {
         user.setEmail(user.getEmail());
@@ -51,6 +55,59 @@ public class UserServiceImpl implements UserService {
         user.setUpdatedAt(LocalDateTime.now());
         userMapper.createAdmin(user);
     }
+
+    @Override
+    public List<User> listClient() {
+        return userMapper.listClient();
+    }
+
+    /**
+     * 通过id查找
+     * @param id
+     * @return
+     */
+    @Override
+    public User userById(Integer id) {
+        return userMapper.userById(id);
+    }
+
+    /**
+     * 改密码
+     * @param id
+     * @return
+     */
+    @Override
+    public void resetPassword(Integer id) {
+        String password = DigestUtils.md5DigestAsHex("123456".getBytes());
+        userMapper.resetPassword(id,password);
+    }
+
+    /**
+     * 创建Client
+     * @param user
+     */
+    @Override
+    public void createClient(User user) {
+        user.setEmail(user.getEmail());
+        user.setUsername(user.getUsername());
+        user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
+        user.setIsAdmin(0);
+        user.setCreatedAt(LocalDateTime.now());
+        user.setCreateTime(LocalDateTime.now());
+        user.setUpdatedAt(LocalDateTime.now());
+
+        userMapper.createAdmin(user);
+    }
+
+    /**
+     * 通过id删除用户
+     * @param id
+     */
+    @Override
+    public void deleteById(Integer id) {
+        userMapper.deleteById(id);
+    }
+
 
 //    @Override
 //    public Result<Map<String, Object>> login(LoginVo loginVo) {

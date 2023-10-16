@@ -28,17 +28,40 @@
                updated_at
         from users
     </sql>
+<!--    创建admin用户-->
     <insert id="createAdmin">
         insert into users(email, password, full_name, is_admin, create_time, created_at, updated_at)
         values (#{email}, #{password}, #{fullName}, #{isAdmin}, #{createTime}, #{createdAt}, #{updatedAt})
     </insert>
+
+<!--    改密码-->
+    <update id="resetPassword">
+        update users set password = #{password} where id = #{id}
+    </update>
+<!--    通过id删除用户-->
+    <delete id="deleteById">
+        delete from users where id = #{id}
+    </delete>
+
+    <!-- 查admin-->
     <select id="list" resultType="com.photo.model.User">
-        <include refid="userList"/>
+        <include refid="userList"/> where is_admin = 1
     </select>
 
+<!--    登录-->
     <select id="login" resultType="com.photo.model.User">
         <include refid="userList"/>
         where email = #{email}
+    </select>
+
+<!--    查Client用户-->
+    <select id="listClient" resultType="com.photo.model.User">
+        <include refid="userList"/> where is_admin = 0
+    </select>
+
+<!--    通过id查找用户-->
+    <select id="userById" resultType="com.photo.model.User">
+        <include refid="userList"/> where id = #{id}
     </select>
     <!--    <select id="getUser" parameterType="string" resultType="com.photo.model.User">-->
 <!--        &lt;!&ndash;        <include refid="userList"/>&ndash;&gt;-->
