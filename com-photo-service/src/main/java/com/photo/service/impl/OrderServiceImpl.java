@@ -7,6 +7,7 @@ import com.photo.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -36,6 +37,25 @@ public class OrderServiceImpl implements OrderService {
     public void updateOrderComplete(Integer id) {
         orderMapper.updateOrderComplete(id);
     }
+
+    @Override
+    public Order orderByUserId(Integer clientId) {
+        return orderMapper.orderByUserId(clientId);
+    }
+
+    @Override
+    public void createOrder(Order order, Integer clientId) {
+        order.setStatus("Valid");
+        order.setOrderPlace(LocalDateTime.now());
+        order.setUserId(clientId);
+        orderMapper.createOrder(order);
+    }
+
+    @Override
+    public List<Order> orderByUserIdL(Integer clientId) {
+        return orderMapper.orderListL(clientId);
+    }
+
 
     @Override
     public void updateOrderCancel(Integer id) {

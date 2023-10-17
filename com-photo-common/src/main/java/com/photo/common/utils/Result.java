@@ -18,38 +18,37 @@ public class Result<T> implements Serializable {
     private String msg;
     private T data;
 
-    private String cookies;
 
 
-    public static <T> Result<T> returnData(int code, String msg, T data, String cookies) {
+    public static <T> Result<T> returnData(int code, String msg, T data) {
 
         Result<T> result = new Result<>();
 
         result.setCode(code);
         result.setMsg(msg);
         result.setData(data);
-        result.setCookies(cookies);
 
         return result;
     }
 
     public static <T> Result<T> cookie(String cookies) {
-        return returnData(200, "success", null, cookies);
+        return returnData(200, "success", null);
     }
 
     public static <T> Result<T> success() {
-        return returnData(200, "success", null, null);
+        return returnData(200, "success", null);
     }
 
     public static <T> Result<T> success(T data) {
-        return returnData(200, "success", data, null);
+        return returnData(200, "success", data);
     }
 
     public static <T> Result<T> error401() {
-        return returnData(401, "认证失败", null, null);
+        return returnData(401, "unauthorized”", null);
     }
 
     public static <T> Result<T> error(int code, String msg) {
-        return returnData(code, msg, null, null);
+        return returnData(code, msg, null);
     }
+
 }

@@ -1,7 +1,9 @@
 com\photo\main\ComPhotoApplication.class
 com\photo\main\controller\client\SizeClientController.class
+com\photo\main\controller\client\CartClientController.class
 com\photo\main\controller\client\FrameClientController.class
 com\photo\main\controller\admin\AdminAdminController.class
+com\photo\main\controller\client\OrderClientController.class
 com\photo\main\controller\client\ClientUserController.class
 com\photo\main\controller\admin\UserAdminController.class
 com\photo\main\controller\client\PhotoClientController.class

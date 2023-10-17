@@ -48,7 +48,7 @@ public class LoginController {
         }
 
         request.getSession().setAttribute("admin", DigestUtils.md5DigestAsHex(user1.getEmail().getBytes()));
-
+        request.getSession().setAttribute("admin_id", user1.getId());
 
         String cookie = (String) request.getSession().getAttribute("admin");
 
@@ -65,6 +65,7 @@ public class LoginController {
     public Result<String> AdminLogout(HttpServletRequest request) {
         if (request.getSession().getAttribute("admin") != null) {
             request.getSession().removeAttribute("admin");
+            request.getSession().removeAttribute("admin_id");
             return Result.success();
         }
         return Result.error(401, "unauthenticated");
@@ -109,6 +110,7 @@ public class LoginController {
     public Result<String> ClientLogout(HttpServletRequest request) {
         if (request.getSession().getAttribute("client") != null) {
             request.getSession().removeAttribute("client");
+            request.getSession().removeAttribute("client_id");
             return Result.success();
         }
         return Result.error(401, "unauthenticated");

@@ -28,9 +28,11 @@ public class Order {
 
     private Integer cvv;
 
-    private Integer total;
+    private Double total;
 
     private List<Photo> photos;
+
+    private List<Integer> photo_id_list;
 
     private LocalDateTime orderPlace;
 

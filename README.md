@@ -31,4 +31,8 @@
 ##### 3, Client Frame select
 ##### 4, Client Photo select
 ##### 5, The Admin User Order is cancel and complete;
-##### 6, Photo upload and delete and select
+##### 6, Photo upload **and** delete **and** select **and** framed_url is add **and** size is select
+##### 7, Cart Select
+##### 8, Add Cart
+##### 9, Select Order 取消 Order Create Order
+##### 10, 部分bug 待修复

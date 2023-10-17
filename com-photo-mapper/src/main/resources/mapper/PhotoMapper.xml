@@ -21,14 +21,39 @@
     </resultMap>
 
     <sql id="photoList">
-        select id, edited_url, original_url, framed_url, frame_name, size, print_price, frame_price, status, frame_id, user_id, size_id, order_id, created_at, updated_at
+        select id,
+               edited_url,
+               original_url,
+               framed_url,
+               frame_name,
+               size,
+               print_price,
+               frame_price,
+               status,
+               frame_id,
+               user_id,
+               size_id,
+               order_id,
+               created_at,
+               updated_at
         from photos;
     </sql>
     <insert id="CreatePhoto">
         insert into photos(edited_url, original_url, framed_url, status,
                            size_id, user_id)
-        VALUES (null, #{newFileName}, null,'uploaded',#{sizeId},#{userId});
+        VALUES (null, #{newFileName}, null, 'uploaded', #{sizeId}, #{userId});
     </insert>
+    <update id="updatePhoto">
+        update photos
+        set framed_url = #{newFileName} and frame_id = #{frameId}
+        where id = #{photoId}
+    </update>
+    <update id="updateCart">
+        update photos set status = 'cart' where id = #{id}
+    </update>
+    <update id="photoByOrderId">
+        update photos set status = 'order' where id = #{id}
+    </update>
     <delete id="deletePhoto">
         delete
         from photos
@@ -36,5 +61,18 @@
     </delete>
     <select id="photoList" resultType="com.photo.model.Photo">
         <include refid="photoList"/>
+    </select>
+    <select id="photoBySizeId" resultType="com.photo.model.Photo">
+        <include refid="photoList"/>
+        where size_id = #{id} and status = 'uploaded'
+    </select>
+    <select id="photoById" resultType="com.photo.model.Photo">
+        <include refid="photoList"/> where id = #{photoId}
+    </select>
+    <select id="photoByUserId" resultType="com.photo.model.Photo">
+        <include refid="photoList"/> where user_id = #{userId} and status = 'cart'
+    </select>
+    <select id="photoByIdL" resultType="com.photo.model.Photo">
+        <include refid="photoList"/> where user_id = #{clientId}
     </select>
 </mapper>

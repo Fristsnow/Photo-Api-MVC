@@ -35,4 +35,51 @@ public class PhotoServiceImpl implements PhotoService {
     public void deletePhoto(Integer id) {
         photoMapper.deletePhoto(id);
     }
+
+    /**
+     * size photo select
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public Photo photoBySizeId(Integer id) {
+        return photoMapper.photoBySizeId(id);
+    }
+
+    /**
+     * update frame_url frame_name
+     * @param newFileName
+     * @param photoId
+     * @param frameId
+     */
+    @Override
+    public void updatePhoto(String newFileName, Integer photoId, Integer frameId) {
+        photoMapper.updatePhoto(newFileName, photoId, frameId);
+    }
+
+    @Override
+    public Photo photoById(Integer photoId) {
+        return photoMapper.photoById(photoId);
+    }
+
+    @Override
+    public Photo photoByUserId(Integer userId) {
+        return photoMapper.photoByUserId(userId);
+    }
+
+    @Override
+    public void updateCart(Integer id) {
+        photoMapper.updateCart(id);
+    }
+
+    @Override
+    public void photoByOrderId(Integer id) {
+        photoMapper.photoByOrderId(id);
+    }
+
+    @Override
+    public List<Photo> photoByUserIdL(Integer clientId) {
+        return photoMapper.photoByIdL(clientId);
+    }
 }

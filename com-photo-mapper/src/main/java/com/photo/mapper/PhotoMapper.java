@@ -12,4 +12,18 @@ public interface PhotoMapper {
     void CreatePhoto(String newFileName, Integer sizeId,Integer userId);
 
     void deletePhoto(Integer id);
+
+    Photo photoBySizeId(Integer id);
+
+    void updatePhoto(String newFileName, Integer photoId, Integer frameId);
+
+    Photo photoById(Integer photoId);
+
+    Photo photoByUserId(Integer userId);
+
+    void updateCart(Integer id);
+
+    void photoByOrderId(Integer id);
+
+    List<Photo> photoByIdL(Integer clientId);
 }

@@ -23,7 +23,11 @@
         select id, full_name, phone_number, shipping_address, card_number, name_on_card, exp_date, cvv, total, order_placed, status, user_id, created_at, updated_at
         from orders;
     </sql>
-<!--    返回Order-->
+    <insert id="createOrder">
+        insert into orders(full_name, phone_number, shipping_address, card_number, name_on_card, exp_date, cvv)
+        VALUES (#{fullName}, #{phoneNumber}, #{shippingAddress}, #{cardNumber}, #{nameOnCard}, #{expDate}, #{cvv})
+    </insert>
+    <!--    返回Order-->
     <update id="updateOrderCancel">
         update orders
         set status = 'Cancel'
@@ -35,12 +39,20 @@
         where id = #{id}
     </update>
 
-
     <select id="orderList" resultType="com.photo.model.Order">
         <include refid="orderList"/>
     </select>
+
     <select id="orderById" resultType="com.photo.model.Order">
         <include refid="orderList"/>
         where id = #{id}
+    </select>
+
+    <select id="orderByUserId" resultType="com.photo.model.Order">
+        <include refid="orderList"/> where user_id = #{clientId}
+    </select>
+
+    <select id="orderListL" resultType="com.photo.model.Order">
+        <include refid="orderList"/> where user_id = #{clientId}
     </select>
 </mapper>

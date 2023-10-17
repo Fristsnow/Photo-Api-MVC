@@ -14,4 +14,10 @@ public interface OrderMapper {
     void updateOrderCancel(Integer id);
 
     void updateOrderComplete(Integer id);
+
+    Order orderByUserId(Integer clientId);
+
+    void createOrder(Order order);
+
+    List<Order> orderListL(Integer clientId);
 }

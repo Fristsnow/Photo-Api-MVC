@@ -12,4 +12,10 @@ public interface OrderService {
     void updateOrderCancel(Integer id);
 
     void updateOrderComplete(Integer id);
+
+    Order orderByUserId(Integer clientId);
+
+    void createOrder(Order order, Integer clientId);
+
+    List<Order> orderByUserIdL(Integer clientId);
 }
