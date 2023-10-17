@@ -1,6 +1,6 @@
 package com.photo.common.exception;
 
-import com.photo.common.Result;
+import com.photo.common.utils.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 
+/**
+ * 异常处理
+ */
 @ControllerAdvice(annotations = {RestController.class})
 @ResponseBody
 @Slf4j

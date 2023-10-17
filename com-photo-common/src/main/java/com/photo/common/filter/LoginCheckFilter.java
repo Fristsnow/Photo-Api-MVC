@@ -1,12 +1,10 @@
 package com.photo.common.filter;
 
 import com.alibaba.fastjson.JSON;
-import com.photo.common.Result;
+import com.photo.common.utils.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -14,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * 过滤器
+ */
 @Component
 @WebFilter(filterName = "loginCheckFilter", urlPatterns = "/*")
 @Slf4j
@@ -36,28 +37,41 @@ public class LoginCheckFilter implements Filter {
         String requestURI = request.getRequestURI();
         log.info("拦截的请求：{}", request.getRequestURI());
 
-        String[] url = new String[]{
-                "/api/v1/admin/login",
-                "/api/v1/client/login",
-                "/api/v1/client/register"
-        };
+//        String[] url = new String[]{
+//                "/api/v1/admin/login",
+//                "/api/v1/client/login",
+//                "/api/v1/client/register"
+//        };
 
-        boolean check = check(url, requestURI);
+//        boolean check = check(url, requestURI);
 //        判断放行
-        if (check) {
-            log.info("本次请求{}不需要处理", requestURI);
-            filterChain.doFilter(servletRequest, servletResponse);
-            return;
-        }
-//        登录放行
-        if (request.getSession().getAttribute("user") != null) {
-            log.info("本次请求已经登陆,用户id:{}", request.getSession().getAttribute("user"));
-            filterChain.doFilter(servletRequest, servletResponse);
-            return;
-        }
-        log.info("用户未登录");
-        response.getWriter().write(JSON.toJSONString(Result.error(401, "unauthenticated")));
-//        filterChain.doFilter(servletRequest, servletResponse);
+//        if (check) {
+//            log.info("本次请求{}不需要处理", requestURI);
+//            filterChain.doFilter(servletRequest, servletResponse);
+//            return;
+//        }
+//        if (request.getSession().getAttribute("id") != null){
+//            filterChain.doFilter(servletRequest, servletResponse);
+//            return;
+//        }
+//        if (request.getSession().getAttribute("admin") != null){
+//            if (request.getSession().getAttribute("client") == null){
+//                response.getWriter().write(JSON.toJSONString(Result.error(401, "unauthenticated")));
+//            }
+//            filterChain.doFilter(servletRequest, servletResponse);
+//            return;
+//        }
+//        if (request.getSession().getAttribute("client") != null){
+//            if (request.getSession().getAttribute("admin") == null){
+//                response.getWriter().write(JSON.toJSONString(Result.error(401, "unauthenticated")));
+//            }
+//            filterChain.doFilter(servletRequest, servletResponse);
+//            return;
+//        }
+
+//        log.info("用户未登录");
+//        response.getWriter().write(JSON.toJSONString(Result.error(401, "unauthenticated")));
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     public boolean check(String[] urls, String requestURI) {

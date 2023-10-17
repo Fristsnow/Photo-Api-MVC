@@ -23,8 +23,24 @@
         select id, full_name, phone_number, shipping_address, card_number, name_on_card, exp_date, cvv, total, order_placed, status, user_id, created_at, updated_at
         from orders;
     </sql>
+<!--    返回Order-->
+    <update id="updateOrderCancel">
+        update orders
+        set status = 'Cancel'
+        where id = #{id}
+    </update>
+    <update id="updateOrderComplete">
+        update orders
+        set status = 'Complete'
+        where id = #{id}
+    </update>
+
 
     <select id="orderList" resultType="com.photo.model.Order">
         <include refid="orderList"/>
+    </select>
+    <select id="orderById" resultType="com.photo.model.Order">
+        <include refid="orderList"/>
+        where id = #{id}
     </select>
 </mapper>

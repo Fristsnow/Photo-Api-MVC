@@ -2,9 +2,9 @@ com\photo\service\OrderService.class
 com\photo\service\FrameService.class
 com\photo\service\SizeService.class
 com\photo\service\UserService.class
-com\photo\service\impl\PhotoServiceService.class
 com\photo\service\impl\SizeServiceImpl.class
 com\photo\service\impl\UserServiceImpl.class
 com\photo\service\PhotoService.class
 com\photo\service\impl\FrameServiceImpl.class
 com\photo\service\impl\OrderServiceImpl.class
+com\photo\service\impl\PhotoServiceImpl.class

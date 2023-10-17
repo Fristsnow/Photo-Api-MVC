@@ -1,4 +1,4 @@
-package com.photo.common;
+package com.photo.common.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,6 +6,10 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+/**
+ * 统一返回
+ * @param <T>
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

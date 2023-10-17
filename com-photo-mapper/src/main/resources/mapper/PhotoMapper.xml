@@ -24,6 +24,16 @@
         select id, edited_url, original_url, framed_url, frame_name, size, print_price, frame_price, status, frame_id, user_id, size_id, order_id, created_at, updated_at
         from photos;
     </sql>
+    <insert id="CreatePhoto">
+        insert into photos(edited_url, original_url, framed_url, status,
+                           size_id, user_id)
+        VALUES (null, #{newFileName}, null,'uploaded',#{sizeId},#{userId});
+    </insert>
+    <delete id="deletePhoto">
+        delete
+        from photos
+        where id = #{id}
+    </delete>
     <select id="photoList" resultType="com.photo.model.Photo">
         <include refid="photoList"/>
     </select>

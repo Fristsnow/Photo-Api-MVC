@@ -1,6 +1,6 @@
 package com.photo.main.controller;
 
-import com.photo.common.Result;
+import com.photo.common.utils.Result;
 import com.photo.model.User;
 import com.photo.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +31,23 @@ public class Controller {
         }
         userService.deleteById(id);
         return Result.success();
+    }
+
+    /**
+     * 重置密码
+     * @param request
+     * @param id
+     * @param userService
+     * @return
+     */
+    public static Result<HashMap<String, String>> getHashMapResult(HttpServletRequest request, @PathVariable Integer id, UserService userService) {
+        if (request.getSession().getAttribute("admin") != null) {
+            userService.resetPassword(id);
+            HashMap<String, String> map = new HashMap<>();
+            map.put("password", "123456");
+            return Result.success(map);
+        }
+        return Result.error(401, "unauthenticated");
     }
 
 }

@@ -1,6 +1,7 @@
-com\photo\model\Size.class
 com\photo\model\Frame.class
-com\photo\model\Order.class
 com\photo\model\vo\LoginVo.class
 com\photo\model\Photo.class
+com\photo\model\Size.class
+com\photo\model\vo\OrderOrPhoto.class
+com\photo\model\Order.class
 com\photo\model\User.class

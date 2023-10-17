@@ -8,4 +8,10 @@ import java.util.List;
 @Mapper
 public interface OrderMapper {
     List<Order> orderList();
+
+    Order orderById(Integer id);
+
+    void updateOrderCancel(Integer id);
+
+    void updateOrderComplete(Integer id);
 }

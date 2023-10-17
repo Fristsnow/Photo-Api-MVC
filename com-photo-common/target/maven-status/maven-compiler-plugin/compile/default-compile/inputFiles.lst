@@ -1,3 +1,6 @@
-K:\.Firstsnow\.java-q\Photo-Api-MVC\com-photo-common\src\main\java\com\photo\common\Result.java
+K:\.Firstsnow\.java-q\Photo-Api-MVC\com-photo-common\src\main\java\com\photo\common\utils\Result.java
+K:\.Firstsnow\.java-q\Photo-Api-MVC\com-photo-common\src\main\java\com\photo\common\utils\UploadImg.java
+K:\.Firstsnow\.java-q\Photo-Api-MVC\com-photo-common\src\main\java\com\photo\common\interceptor\LoginInterceptor.java
 K:\.Firstsnow\.java-q\Photo-Api-MVC\com-photo-common\src\main\java\com\photo\common\exception\BaseException.java
+K:\.Firstsnow\.java-q\Photo-Api-MVC\com-photo-common\src\main\java\com\photo\common\config\WebConfig.java
 K:\.Firstsnow\.java-q\Photo-Api-MVC\com-photo-common\src\main\java\com\photo\common\filter\LoginCheckFilter.java
