@@ -38,7 +38,10 @@
     <update id="resetPassword">
         update users set password = #{password} where id = #{id}
     </update>
-<!--    通过id删除用户-->
+    <update id="userReset">
+        update users set password = #{newPassword} where id = #{clientId}
+    </update>
+    <!--    通过id删除用户-->
     <delete id="deleteById">
         delete from users where id = #{id}
     </delete>

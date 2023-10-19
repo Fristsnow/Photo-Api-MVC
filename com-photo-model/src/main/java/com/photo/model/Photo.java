@@ -23,9 +23,9 @@ public class Photo {
 
     private String size;
 
-    private Double printPrice;
+    private Double printPrice = 0.0;
 
-    private Double framePrice;
+    private Double framePrice = 0.0;
 
     private String status;
 

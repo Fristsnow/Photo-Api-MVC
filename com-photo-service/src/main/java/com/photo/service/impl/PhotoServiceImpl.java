@@ -6,6 +6,7 @@ import com.photo.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -28,6 +29,9 @@ public class PhotoServiceImpl implements PhotoService {
      */
     @Override
     public void CraetePhoto(String newFileName, Integer sizeId, Integer userId) {
+        Photo photo = new Photo();
+        photo.setCreatedAt(LocalDateTime.now());
+        photo.setUpdatedAt(LocalDateTime.now());
         photoMapper.CreatePhoto(newFileName, sizeId, userId);
     }
 
@@ -49,6 +53,7 @@ public class PhotoServiceImpl implements PhotoService {
 
     /**
      * update frame_url frame_name
+     *
      * @param newFileName
      * @param photoId
      * @param frameId
@@ -63,8 +68,13 @@ public class PhotoServiceImpl implements PhotoService {
         return photoMapper.photoById(photoId);
     }
 
+    /**
+     * Cart Select
+     * @param userId
+     * @return
+     */
     @Override
-    public Photo photoByUserId(Integer userId) {
+    public List<Photo> photoByUserId(Integer userId) {
         return photoMapper.photoByUserId(userId);
     }
 
@@ -74,12 +84,31 @@ public class PhotoServiceImpl implements PhotoService {
     }
 
     @Override
-    public void photoByOrderId(Integer id) {
-        photoMapper.photoByOrderId(id);
+    public void photoByOrderId(Integer id, Integer orderId) {
+        Photo photo = new Photo();
+        photo.setOrderId(orderId);
+        photoMapper.photoByOrderId(id, orderId);
     }
 
     @Override
     public List<Photo> photoByUserIdL(Integer clientId) {
         return photoMapper.photoByIdL(clientId);
+    }
+
+    /**
+     * 分类查询
+     *
+     * @param clientId
+     * @param oId
+     * @return
+     */
+    @Override
+    public List<Photo> photoUserIdOrderId(Integer clientId, Integer oId) {
+        return photoMapper.photoUserIdOrderId(clientId, oId);
+    }
+
+    @Override
+    public void updateValid(Integer id) {
+        photoMapper.updateValid(id);
     }
 }

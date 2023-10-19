@@ -3,9 +3,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.photo.mapper.OrderMapper">
     <resultMap id="Order" type="com.photo.model.Order">
-        <result column="id" property="id"></result>
+        <id column="id" property="id"></id>
         <result column="full_name" property="fullName"></result>
-        <result column="phone_number" property="fullName"></result>
+        <result column="phone_number" property="phoneNumber"></result>
         <result column="shipping_address" property="shippingAddress"></result>
         <result column="card_number" property="cardNumber"></result>
         <result column="name_on_card" property="nameOnCard"></result>
@@ -20,12 +20,28 @@
     </resultMap>
 
     <sql id="orderList">
-        select id, full_name, phone_number, shipping_address, card_number, name_on_card, exp_date, cvv, total, order_placed, status, user_id, created_at, updated_at
-        from orders;
+        select id,
+               full_name,
+               phone_number,
+               shipping_address,
+               card_number,
+               name_on_card,
+               exp_date,
+               cvv,
+               total,
+               order_placed,
+               status,
+               user_id,
+               created_at,
+               updated_at
+        from orders
     </sql>
-    <insert id="createOrder">
-        insert into orders(full_name, phone_number, shipping_address, card_number, name_on_card, exp_date, cvv)
-        VALUES (#{fullName}, #{phoneNumber}, #{shippingAddress}, #{cardNumber}, #{nameOnCard}, #{expDate}, #{cvv})
+
+    <insert id="createOrder" keyProperty="id" useGeneratedKeys="true">
+        insert into orders(full_name, phone_number, shipping_address, card_number, name_on_card, exp_date, cvv, total,
+        order_placed, status, user_id, created_at, updated_at)
+        values (#{fullName}, #{phoneNumber}, #{shippingAddress}, #{cardNumber}, #{nameOnCard}, #{expDate}, #{cvv},
+        #{total}, #{orderPlace}, #{status}, #{userId}, #{createdAt}, #{updatedAt})
     </insert>
     <!--    返回Order-->
     <update id="updateOrderCancel">
@@ -38,6 +54,9 @@
         set status = 'Complete'
         where id = #{id}
     </update>
+    <update id="createTotal">
+        update orders set total = #{total} where id = #{id}
+    </update>
 
     <select id="orderList" resultType="com.photo.model.Order">
         <include refid="orderList"/>
@@ -49,10 +68,12 @@
     </select>
 
     <select id="orderByUserId" resultType="com.photo.model.Order">
-        <include refid="orderList"/> where user_id = #{clientId}
+        <include refid="orderList"/>
+        where user_id = #{clientId}
     </select>
 
     <select id="orderListL" resultType="com.photo.model.Order">
-        <include refid="orderList"/> where user_id = #{clientId}
+        <include refid="orderList"/>
+        where user_id = #{clientId}
     </select>
 </mapper>

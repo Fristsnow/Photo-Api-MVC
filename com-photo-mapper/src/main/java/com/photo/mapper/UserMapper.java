@@ -32,6 +32,8 @@ public interface UserMapper {
 
     void deleteById(Integer id);
 
+    void userReset(String newPassword, Integer clientId);
+
 
 //    User getUser(String email);
 }

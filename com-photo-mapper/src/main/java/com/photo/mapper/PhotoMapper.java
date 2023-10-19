@@ -9,7 +9,7 @@ import java.util.List;
 public interface PhotoMapper {
     List<Photo> photoList();
 
-    void CreatePhoto(String newFileName, Integer sizeId,Integer userId);
+    void CreatePhoto(String newFileName, Integer sizeId, Integer userId);
 
     void deletePhoto(Integer id);
 
@@ -18,12 +18,20 @@ public interface PhotoMapper {
     void updatePhoto(String newFileName, Integer photoId, Integer frameId);
 
     Photo photoById(Integer photoId);
-
-    Photo photoByUserId(Integer userId);
+    /**
+     * Cart Select
+     * @param userId
+     * @return
+     */
+    List<Photo> photoByUserId(Integer userId);
 
     void updateCart(Integer id);
 
-    void photoByOrderId(Integer id);
+    void photoByOrderId(Integer id,Integer orderId);
 
     List<Photo> photoByIdL(Integer clientId);
+
+    List<Photo> photoUserIdOrderId(Integer clientId, Integer oId);
+
+    void updateValid(Integer id);
 }

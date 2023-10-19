@@ -97,6 +97,11 @@ public class UserServiceImpl implements UserService {
         userMapper.deleteById(id);
     }
 
+    @Override
+    public void userReset(String newPassword, Integer clientId) {
+        userMapper.userReset(newPassword,clientId);
+    }
+
 
 //    @Override
 //    public Result<Map<String, Object>> login(LoginVo loginVo) {

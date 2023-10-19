@@ -1,6 +1,7 @@
 package com.photo.mapper;
 
 import com.photo.model.Order;
+import com.photo.model.vo.OrderPhoto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,7 +18,9 @@ public interface OrderMapper {
 
     Order orderByUserId(Integer clientId);
 
-    void createOrder(Order order);
+    Integer createOrder(OrderPhoto order);
 
     List<Order> orderListL(Integer clientId);
+
+    void createTotal(double total,Integer id);
 }

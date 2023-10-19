@@ -32,6 +32,8 @@ public interface UserService {
 
     void deleteById(Integer id);
 
+    void userReset(String newPassword, Integer clientId);
+
 
 //    Result<Map<String, Object>> login(LoginVo loginVo);
 }

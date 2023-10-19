@@ -12,14 +12,14 @@ import java.sql.SQLIntegrityConstraintViolationException;
 /**
  * 异常处理
  */
-@ControllerAdvice(annotations = {RestController.class})
+//@ControllerAdvice(annotations = {RestController.class})
 @ResponseBody
 @Slf4j
 public class BaseException {
 
-    @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
-    public Result<String> exceptionHandle(SQLIntegrityConstraintViolationException exception) {
-        log.error(exception.getMessage());
-        return Result.error(422, "用户已经存在，请重新输入");
-    }
+//    @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
+//    public Result<String> exceptionHandle(SQLIntegrityConstraintViolationException exception) {
+//        log.error(exception.getMessage());
+//        return Result.error(422, "用户已经存在，请重新输入");
+//    }
 }

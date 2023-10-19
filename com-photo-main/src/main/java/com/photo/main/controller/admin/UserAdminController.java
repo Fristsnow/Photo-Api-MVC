@@ -1,7 +1,9 @@
 package com.photo.main.controller.admin;
 
 import com.photo.common.utils.Result;
+import com.photo.model.Photo;
 import com.photo.model.User;
+import com.photo.service.PhotoService;
 import com.photo.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import static com.photo.main.controller.Controller.getHashMapResult;
 import static com.photo.main.controller.Controller.getStringResult;
@@ -25,6 +28,8 @@ public class UserAdminController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private PhotoService photoService;
     /**
      * Client User
      *
@@ -65,5 +70,24 @@ public class UserAdminController {
         return Result.error(401, "unauthenticated");
     }
 
+    /**
+     * 重置用户购物车
+     * @param request
+     * @param id
+     * @return
+     */
+    public Result<String> resetCart(HttpServletRequest request, @PathVariable Integer id) {
+        if (request.getSession().getAttribute("client") != null){
+
+            Photo photo = photoService.photoById(id);
+            if (photo != null && Objects.equals(photo.getStatus(), "cart")){
+                photoService.updateValid(id);
+                return Result.success();
+            }else {
+                return Result.error(404,"not found");
+            }
+        }
+        return Result.error401();
+    }
 
 }

@@ -36,7 +36,7 @@
                order_id,
                created_at,
                updated_at
-        from photos;
+        from photos
     </sql>
     <insert id="CreatePhoto">
         insert into photos(edited_url, original_url, framed_url, status,
@@ -52,7 +52,10 @@
         update photos set status = 'cart' where id = #{id}
     </update>
     <update id="photoByOrderId">
-        update photos set status = 'order' where id = #{id}
+        update photos set status = 'order',order_id = #{orderId} where id = #{id}
+    </update>
+    <update id="updateValid">
+        update photos set status = 'Valid' where id = #{id}
     </update>
     <delete id="deletePhoto">
         delete
@@ -70,9 +73,13 @@
         <include refid="photoList"/> where id = #{photoId}
     </select>
     <select id="photoByUserId" resultType="com.photo.model.Photo">
-        <include refid="photoList"/> where user_id = #{userId} and status = 'cart'
+        <include refid="photoList"/> where status = 'cart' and user_id = #{userId}
     </select>
     <select id="photoByIdL" resultType="com.photo.model.Photo">
-        <include refid="photoList"/> where user_id = #{clientId}
+        <include refid="photoList"/> where user_id = #{clientId} and status = 'order'
+    </select>
+<!--    photo 属于 user and order-->
+    <select id="photoUserIdOrderId" resultType="com.photo.model.Photo">
+        <include refid="photoList"/> where order_id = #{oId} and user_id = #{clientId}
     </select>
 </mapper>

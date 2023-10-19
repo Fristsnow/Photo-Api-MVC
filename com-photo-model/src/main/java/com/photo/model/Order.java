@@ -3,7 +3,9 @@ package com.photo.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.beans.Transient;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,7 +18,7 @@ public class Order {
 
     private String fullName;
 
-    private Integer phoneNumber;
+    private String phoneNumber;
 
     private String shippingAddress;
 
@@ -26,13 +28,13 @@ public class Order {
 
     private LocalDate expDate;
 
-    private Integer cvv;
+    private String cvv;
 
     private Double total;
 
     private List<Photo> photos;
 
-    private List<Integer> photo_id_list;
+//    private List<Integer> photo_id_list;
 
     private LocalDateTime orderPlace;
 

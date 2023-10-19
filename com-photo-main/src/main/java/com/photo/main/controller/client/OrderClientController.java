@@ -3,6 +3,7 @@ package com.photo.main.controller.client;
 import com.photo.common.utils.Result;
 import com.photo.model.Order;
 import com.photo.model.Photo;
+import com.photo.model.vo.OrderPhoto;
 import com.photo.service.OrderService;
 import com.photo.service.PhotoService;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,9 +35,10 @@ public class OrderClientController {
         if (request.getSession().getAttribute("client") != null) {
             Integer clientId = (Integer) request.getSession().getAttribute("client_id");
             List<Order> order = orderService.orderByUserIdL(clientId);
-            List<Photo> photoList = photoService.photoByUserIdL(clientId);
-
+//            List<Photo> photoList = photoService.photoByUserIdL(clientId);
             for (Order o : order) {
+                Integer oId = o.getId();
+                List<Photo> photoList = photoService.photoUserIdOrderId(clientId, oId);
                 o.setPhotos(photoList);
             }
             return Result.success(order);
@@ -52,23 +53,30 @@ public class OrderClientController {
      * @param order
      * @return
      */
-    @PostMapping
-    public Result<String> createOrder(HttpServletRequest request, @RequestBody Order order) {
+    @PostMapping("/{photo_id_list}")
+    public Result<String> createOrder(HttpServletRequest request,
+                                      @RequestBody OrderPhoto order, @PathVariable List<Integer> photo_id_list) {
         if (request.getSession().getAttribute("client") != null) {
             Integer clientId = (Integer) request.getSession().getAttribute("client_id");
-
-
-            for (Integer id : order.getPhoto_id_list()) {
-                photoService.photoByOrderId(id);
+            order.setUserId(clientId);
+            Integer ids = orderService.createOrder(order);
+            log.info("Order id:{}", ids);
+//            log.info("order 订单的输出{}", order);
+            double total = 0;
+            for (Integer id : photo_id_list) {
+                Photo photo = photoService.photoById(id);
+                if (photo == null)
+                    return Result.error(404, "该系列图片不能添加到购物车，有可能是因为有部分图片找不到");
+                if (!Objects.equals(photo.getStatus(), "cart"))
+                    return Result.error(422, "该系列图片不能添加到购物车，有可能是因为有图片没有加进购物车");
+                if (photo.getPrintPrice() != null && photo.getFramePrice() != null) {
+                    total += photo.getPrintPrice() + photo.getFramePrice();
+                }
+                photoService.photoByOrderId(id, ids);
             }
-//            for (Integer ids : order.getPhoto_id_list()) {
-//                Photo photo = photoService.photoById(ids);
-//                Double total = (photo.getPrintPrice() + photo.getFramePrice());
-//                order.setTotal(total);
-//            }
-            orderService.createOrder(order, clientId);
-            log.info("order 订单的输出{}", order);
-            HashMap<Object, Object> map = new HashMap<>();
+            log.info("total:{}", total);
+            orderService.createTotal(total, ids);
+
             return Result.success();
         }
         return Result.error401();

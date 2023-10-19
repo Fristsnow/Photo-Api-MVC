@@ -18,11 +18,20 @@ public interface PhotoService {
 
     Photo photoById(Integer photoId);
 
-    Photo photoByUserId(Integer userId);
+    /**
+     * Cart Select
+     * @param userId
+     * @return
+     */
+    List<Photo> photoByUserId(Integer userId);
 
     void updateCart(Integer id);
 
-    void photoByOrderId(Integer id);
+    void photoByOrderId(Integer id,Integer orderId);
 
     List<Photo> photoByUserIdL(Integer clientId);
+
+    List<Photo> photoUserIdOrderId(Integer clientId, Integer oId);
+
+    void updateValid(Integer id);
 }
